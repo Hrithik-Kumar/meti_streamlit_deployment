@@ -10,6 +10,8 @@ import torch.nn as nn
 import numpy as np
 from PIL import Image
 
+
+st.set_page_config(layout="wide")
 # --- MODEL AND APP CONFIGURATION ---
 
 # These parameters MUST match the parameters used during training in the Colab notebook.
@@ -64,7 +66,7 @@ generator = load_model()
 
 # --- STREAMLIT USER INTERFACE ---
 
-st.set_page_config(layout="wide")
+
 st.title("Handwritten Digit Image Generator")
 st.write("Generate synthetic MNIST-like images using a trained Conditional GAN model.")
 

@@ -19,7 +19,7 @@ LATENT_DIM = 100
 N_CLASSES = 10
 EMBEDDING_DIM = 100
 IMG_SHAPE = (1, 28, 28)
-MODEL_PATH = "cgan_generator_epoch46.pth" # Path to your downloaded model file
+MODEL_PATH = "cgan_generator_epoch_60.pth" # Path to your downloaded model file
 
 # Set device to CPU, as Streamlit Cloud runs on CPU instances.
 device = torch.device("cpu")

@@ -33,7 +33,7 @@ class Generator(nn.Module):
         super(Generator, self).__init__()
         self.label_embedding = nn.Embedding(N_CLASSES, EMBEDDING_DIM)
         self.model = nn.Sequential(
-            nn.Linear(LATENT_DIM + EMBEDDING_DIM, 256),
+            nn.Linear(LATENT_DIM, 256),
             nn.BatchNorm1d(256),
             nn.LeakyReLU(0.2, inplace=True),
 
@@ -44,14 +44,14 @@ class Generator(nn.Module):
             nn.Linear(512, 1024),
             nn.BatchNorm1d(1024),
             nn.LeakyReLU(0.2, inplace=True),
-            
+
             nn.Linear(1024, int(np.prod(IMG_SHAPE))),
             nn.Tanh()
         )
 
     def forward(self, noise, labels):
         label_emb = self.label_embedding(labels)
-        gen_input = torch.cat((noise, label_emb), -1)
+        gen_input = noise * label_emb
         img = self.model(gen_input)
         img = img.view(img.size(0), *IMG_SHAPE)
         return img
